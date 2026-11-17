@@ -2,7 +2,7 @@
 name: how-to
 description: "An instruction you can touch: for any \"how do I do X\" question, builds a single page – the order of steps on the left, a transparent ink drawing on the right that the reader works with their hands (drag, click, click fast). Steps tick themselves off as the reader performs them, and a \"done\" card appears at the end. Draws its own objects for every topic. Use when asked for an \"interactive instruction\", a \"how-to\", \"how to do X so I can play with it\", a \"hands-on explainer\" or a \"trainer page\". Input – a question or a ready-made instruction. Output – one html file that opens itself in the browser and one clickable link to it; with the --publish flag – a link to a claude.ai artifact."
 argument-hint: "<how to … | text of a ready-made instruction> [--publish]"
-version: 1.5
+version: 1.6
 user-invocable: true
 ---
 
@@ -14,7 +14,7 @@ The result is one `html` file. The page holds only a title, the order of actions
 
 ## Launched without a topic
 
-The skill was called with no text – build nothing. Answer with this one hint and wait:
+There is not a single word after the skill name – build nothing. Answer with this one hint and wait:
 
 ```text
 tell me what to explain: any "how do I …" question, or a ready-made instruction to bring to life.
@@ -28,7 +28,7 @@ for example:
 you can add who it is for and what the reader already has.
 ```
 
-Any text after the call is a request. A topic or an action without the words "how to" ("pole vault?", "a pole", "change a tyre") reads as "how to do it": build the page. If the topic cannot be made out of the text at all, ask one clarifying question and carry on.
+If there is at least one word after the skill name, it is the topic of the page: do not show the hint. A topic or an action without the words "how to" ("pole vault?", "a pole", "change a tyre", "do pull-ups properly") reads as "how to do it": build the page. Read words about the body, sport, home, money or things literally, even if they could be taken as a request to you or about the skill itself: "pull up properly" is a page about pull-ups on a bar. Fix typos silently ("porperly" – "properly"). If the topic cannot be made out at all, ask one clarifying question, without the hint and its examples.
 
 ## Workflow
 
