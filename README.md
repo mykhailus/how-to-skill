@@ -2,7 +2,7 @@
 
 A skill for Claude Code. Ask "how do I do X" and get a single page: the order of steps on the left, a transparent ink drawing on the right. The reader performs each step on the drawing by hand – drags, clicks, clicks fast – and the steps tick themselves off.
 
-![demo: brewing a cup of tea](docs/demo.gif)
+![demo: brewing a cup of tea](assets/demo.gif)
 
 **[Try the live demo →](https://mykhailus.github.io/how-to-skill/)**
 
@@ -80,7 +80,6 @@ Run `/how-to` with no topic to get a short hint with examples.
 | `skills/how-to/template.html` | the engine and a teaching sample, "how to brew a cup of tea" |
 | `skills/how-to/to_artifact.py` | prepares a page for publishing as an artifact |
 | `.claude-plugin/` | plugin manifest and marketplace file |
-| `docs/` | the live demo (the same sample page) |
 
 A page consists of three blocks. The model replaces `CONTENT` (text, steps, the `model(v)` function) and `SCENE` (the drawing), and leaves `ENGINE` untouched. The engine handles the ink rendering, handles, clicks, labels, step checks and the finish card.
 
