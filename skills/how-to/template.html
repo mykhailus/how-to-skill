@@ -212,7 +212,7 @@ const S = { raw, v, t: 0, dt: 0, step: 0, mem: {}, dragging: null, part: id => p
 function setStep(i) {
   if (i < 0 || i >= stepEls.length) return; stepI = i; stepEls.forEach((e, j) => e.classList.toggle('on', j === i));
   const st = C.steps[i]; if (st.set) for (const key in st.set) setVal(key, st.set[key]);
-  userAz = userEl = 0; doneHold = 0; try { armed = !!st.done && !st.done(S); hooks.step?.(i, S); } catch (e) { fail('step', e); }
+  userAz = userEl = 0; doneHold = 0; try { armed = !!st.done && (!stepEls[i].classList.contains('ok') || !st.done(S)); hooks.step?.(i, S); } catch (e) { fail('step', e); }
 }
 // the step action is done – the step gets a tick, the next one becomes active
 function checkDone(dt) {

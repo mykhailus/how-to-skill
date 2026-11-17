@@ -2,7 +2,7 @@
 name: how-to
 description: "An instruction you can touch: for any \"how do I do X\" question, builds a single page – the order of steps on the left, a transparent ink drawing on the right that the reader works with their hands (drag, click, click fast). Steps tick themselves off as the reader performs them, and a \"done\" card appears at the end. Draws its own objects for every topic. Use when asked for an \"interactive instruction\", a \"how-to\", \"how to do X so I can play with it\", a \"hands-on explainer\" or a \"trainer page\". Input – a question or a ready-made instruction. Output – one html file that opens itself in the browser and one clickable link to it; with the --publish flag – a link to a claude.ai artifact."
 argument-hint: "<how to … | text of a ready-made instruction> [--publish]"
-version: 1.6
+version: 1.7
 user-invocable: true
 ---
 
@@ -67,6 +67,8 @@ Every step with an action has a `done` condition: the reader did what was needed
 - put the dependency into `model`: "paid" is true only when there is both an amount and a rate;
 - send back a handle that was touched too early: in `release` remember the refusal in `s.mem`, in `update` ease the value back and show a label that says what is missing ("write the words down first");
 - an object it is too early to touch can be hidden with `show` in the earlier steps.
+
+If the reader still acts too early, the engine ticks that step by itself when its turn comes, so the page never gets stuck. Keeping the order is still your job.
 
 The ending is visible twice. On the drawing: the result stays in place after the last action, and the label on the object names it ("tea is ready – just right") instead of going back to the hint. On the `finish` card: one or two sentences about what came out and what the reader did; it slides in by itself when the last step is done, with a "start over" button.
 
