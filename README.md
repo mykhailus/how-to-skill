@@ -26,18 +26,30 @@ With the [skills](https://skills.sh) CLI:
 npx skills add mykhailus/how-to-skill
 ```
 
-Or by hand: copy the `how-to` folder into your Claude Code skills directory.
+As a Claude Code plugin:
+
+```text
+/plugin marketplace add mykhailus/how-to-skill
+```
+
+```text
+/plugin install how-to@mykhailus
+```
+
+Installed as a plugin, the skill is called `/how-to:how-to`.
+
+Or by hand: copy the `skills/how-to` folder into your Claude Code skills directory.
 
 macOS / Linux:
 
 ```bash
-git clone https://github.com/mykhailus/how-to-skill.git && cp -r how-to-skill/how-to ~/.claude/skills/
+git clone https://github.com/mykhailus/how-to-skill.git && cp -r how-to-skill/skills/how-to ~/.claude/skills/
 ```
 
 Windows (PowerShell):
 
 ```powershell
-git clone https://github.com/mykhailus/how-to-skill.git; Copy-Item -Recurse how-to-skill\how-to "$env:USERPROFILE\.claude\skills\"
+git clone https://github.com/mykhailus/how-to-skill.git; Copy-Item -Recurse how-to-skill\skills\how-to "$env:USERPROFILE\.claude\skills\"
 ```
 
 To use it in one project only, put the folder into `.claude/skills/` of that project.
@@ -64,9 +76,10 @@ Run `/how-to` with no topic to get a short hint with examples.
 
 | file | purpose |
 |---|---|
-| `how-to/SKILL.md` | the instructions the model follows: find the action, draw the objects, write the steps |
-| `how-to/template.html` | the engine and a teaching sample, "how to brew a cup of tea" |
-| `how-to/to_artifact.py` | prepares a page for publishing as an artifact |
+| `skills/how-to/SKILL.md` | the instructions the model follows: find the action, draw the objects, write the steps |
+| `skills/how-to/template.html` | the engine and a teaching sample, "how to brew a cup of tea" |
+| `skills/how-to/to_artifact.py` | prepares a page for publishing as an artifact |
+| `.claude-plugin/` | plugin manifest and marketplace file |
 | `docs/` | the live demo (the same sample page) |
 
 A page consists of three blocks. The model replaces `CONTENT` (text, steps, the `model(v)` function) and `SCENE` (the drawing), and leaves `ENGINE` untouched. The engine handles the ink rendering, handles, clicks, labels, step checks and the finish card.

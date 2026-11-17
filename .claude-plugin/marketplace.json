@@ -1,0 +1,16 @@
+{
+  "name": "mykhailus",
+  "owner": {
+    "name": "mykhailus"
+  },
+  "metadata": {
+    "description": "Skills by mykhailus for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "how-to",
+      "source": "./",
+      "description": "An instruction you can touch: a one-page how-to with an ink drawing the reader operates by hand."
+    }
+  ]
+}
