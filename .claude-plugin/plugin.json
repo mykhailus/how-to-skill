@@ -1,7 +1,7 @@
 {
   "name": "how-to",
   "description": "An instruction you can touch: turns any \"how do I do X\" question into a one-page instruction with a transparent ink drawing the reader operates by hand. Steps tick themselves off as they are performed.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": { "name": "mykhailus", "url": "https://github.com/mykhailus" },
   "homepage": "https://mykhailus.github.io/how-to-skill/",
   "repository": "https://github.com/mykhailus/how-to-skill",

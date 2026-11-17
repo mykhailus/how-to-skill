@@ -78,10 +78,11 @@ Run `/how-to` with no topic to get a short hint with examples.
 |---|---|
 | `skills/how-to/SKILL.md` | the instructions the model follows: find the action, draw the objects, write the steps |
 | `skills/how-to/template.html` | the engine and a teaching sample, "how to brew a cup of tea" |
+| `skills/how-to/build_page.py` | builds a page: puts the blocks of a topic into the template and checks them |
 | `skills/how-to/to_artifact.py` | prepares a page for publishing as an artifact |
 | `.claude-plugin/` | plugin manifest and marketplace file |
 
-A page consists of three blocks. The model replaces `CONTENT` (text, steps, the `model(v)` function) and `SCENE` (the drawing), and leaves `ENGINE` untouched. The engine handles the ink rendering, handles, clicks, labels, step checks and the finish card.
+A page consists of three blocks. The model replaces `CONTENT` (text, steps, the `model(v)` function) and `SCENE` (the drawing), and `build_page.py` puts them into the template, leaving `ENGINE` untouched. The engine handles the ink rendering, handles, clicks, labels, step checks and the finish card.
 
 ## Requirements
 

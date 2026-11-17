@@ -2,7 +2,7 @@
 name: how-to
 description: "An instruction you can touch: for any \"how do I do X\" question, builds a single page – the order of steps on the left, a transparent ink drawing on the right that the reader works with their hands (drag, click, click fast). Steps tick themselves off as the reader performs them, and a \"done\" card appears at the end. Draws its own objects for every topic. Use when asked for an \"interactive instruction\", a \"how-to\", \"how to do X so I can play with it\", a \"hands-on explainer\" or a \"trainer page\". Input – a question or a ready-made instruction. Output – one html file that opens itself in the browser and one clickable link to it; with the --publish flag – a link to a claude.ai artifact."
 argument-hint: "<how to … | text of a ready-made instruction> [--publish]"
-version: 1.4
+version: 1.5
 user-invocable: true
 ---
 
@@ -10,7 +10,7 @@ user-invocable: true
 
 The result is one `html` file. The page holds only a title, the order of actions in 4–6 steps and a stage with a drawing. The drawing is transparent, ink only, no colour. The reader changes it by hand, and the labels on the objects answer at once.
 
-`template.html` sits next to this file: the engine and a teaching sample, "how to brew a cup of tea".
+`template.html` (the engine and a teaching sample, "how to brew a cup of tea") and `build_page.py` (builds a page from the blocks of a topic) sit next to this file.
 
 ## Launched without a topic
 
@@ -72,12 +72,13 @@ The ending is visible twice. On the drawing: the result stays in place after the
 
 The voice of the page: the title and step names in lowercase; step text starts with a lowercase letter, with a capital after a full stop; en dash (–); no emoji. Everything the reader needs to know is in the step or in a label on an object.
 
-### 5. Build the file
-Copy `template.html` under a name for the topic (`how-to-buy-bitcoin.html`) into the folder where the user works. The file has three blocks, with comments marking the borders:
+### 5. Build the file with the script
+The page is built only by the `build_page.py` script that sits next to this file. Do not write the html by hand and do not copy or edit `template.html`: without the engine the page has no labels, no step switching, no framing and no clicks.
 
-- `CONTENT` – replace entirely (together with `model`);
-- `SCENE` – replace entirely;
-- `ENGINE` and everything above it (styles, fonts) – do not change a line. If something is missing, write your own in `SCENE` with Three.js (`k.THREE`, `b.add(obj)`).
+1. Read only the sample in `template.html` – the lines between the `CONTENT` and `ENGINE` comments (about 71–180). That is what the blocks look like. There is no need to read the engine below: its features are described in the `CONTENT` and `SCENE` sections of this file.
+2. Write the blocks of the topic into a separate file `<topic>.js`: `const model`, `const CONTENT`, `function SCENE(k)` – in the same form as the sample. No `<script>`, no renderer, camera, lights or grid of your own: the engine provides them. If something is missing, write your own in `SCENE` with Three.js (`k.THREE`, `b.add(obj)`). Put the blocks file where the page goes, outside any repository.
+3. Build: `python -I -X utf8 "<skill folder>/build_page.py" <topic>.js how-to-buy-bitcoin.html`. Name the page after the topic. A bare name puts the page into `~/how-to` or the folder from `HOW_TO_DIR`; a full path puts it where the user works. The script does not write inside a git repository. It prints the path and a `file:///` link.
+4. The script refused (a block is missing, a syntax error, a path inside a repository) – fix the blocks file or the path and build again.
 
 There is one `model(v)` function per page: both the placement of objects and the labels call it. That way the numbers never drift from the picture.
 
@@ -180,7 +181,7 @@ A handle's path is drawn as a dashed line by itself, and the handle pulses until
 - a step with an action and no `done` condition;
 - a scene made of the sample's objects or of faceless cubes, balls and columns;
 - colour in the drawing, sliders, quizzes, glossaries, footnotes, any blocks other than the steps and the stage;
-- edits to `ENGINE` and the styles;
+- a page written by hand or built without `build_page.py`; edits to `ENGINE` and the styles;
 - numbers computed outside `model`, and invented data presented as fact;
 - more than 8 objects and 6 steps;
 - an answer longer than one link.
