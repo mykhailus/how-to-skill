@@ -6,6 +6,8 @@ A skill for Claude Code. Ask "how do I do X" and get a single page: the order of
 
 **[Try the live demo →](https://mykhailus.github.io/how-to-skill/)**
 
+[![skills.sh](https://skills.sh/b/mykhailus/how-to-skill)](https://skills.sh/mykhailus/how-to-skill)
+
 ## What you get
 
 - **One html file.** No build step, no server. It opens in any browser and can be sent as is.
@@ -18,7 +20,13 @@ The page is deliberately small: a title, 4–6 steps and the stage. No quizzes, 
 
 ## Install
 
-Copy the `how-to` folder into your Claude Code skills directory.
+With the [skills](https://skills.sh) CLI:
+
+```bash
+npx skills add mykhailus/how-to-skill
+```
+
+Or by hand: copy the `how-to` folder into your Claude Code skills directory.
 
 macOS / Linux:
 
