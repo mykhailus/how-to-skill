@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>instruction</title>
+<title>how to brew a cup of tea</title>
+<meta name="description" content="A page made by the how-to skill for Claude Code: perform each step on the drawing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
@@ -52,12 +53,21 @@ h1{font:700 clamp(38px,6.4vw,88px)/.95 var(--disp);letter-spacing:-.03em;margin:
   .text{order:2}
   .stage{aspect-ratio:auto;height:44vh;max-height:none;border-left:0;border-right:0}
 }
+
+.demos{max-width:1320px;margin:0 auto;padding:14px clamp(16px,3vw,40px) 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;
+  font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.demos a{color:var(--dim);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
+.demos a:hover{color:var(--ink)}
+.demos a.cur{color:var(--ink);border-bottom-color:var(--acc)}
+.demos .get{margin-left:auto;color:var(--ink)}
+.demos .get:hover{color:var(--acc)}
 </style>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
 </script>
 </head>
 <body>
+<nav class="demos"><span>/how-to demos:</span><a href="./" class="cur">tea</a><a href="bitcoin.html">bitcoin</a><a href="swim.html">swim</a><a class="get" href="https://github.com/mykhailus/how-to-skill">get the skill →</a></nav>
 <main id="app"></main>
 
 <script type="module">
