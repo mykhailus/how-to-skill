@@ -70,10 +70,6 @@ A page consists of three blocks. The model replaces `CONTENT` (text, steps, the 
 - An internet connection when the page opens: it loads [three.js](https://threejs.org/) from jsDelivr and two fonts from Google Fonts.
 - Python 3 – only for `--publish`.
 
-## Credits
-
-The idea of an explanation you operate by hand comes from [Every Joule](https://everyjoule.com/).
-
 ## License
 
 MIT
