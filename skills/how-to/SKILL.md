@@ -2,7 +2,7 @@
 name: how-to
 description: "An instruction you can touch: for any \"how do I do X\" question, builds a single page – the order of steps on the left, a transparent ink drawing on the right that the reader works with their hands (drag, click, click fast). Steps tick themselves off as the reader performs them, and a \"done\" card appears at the end. Draws its own objects for every topic. Use when asked for an \"interactive instruction\", a \"how-to\", \"how to do X so I can play with it\", a \"hands-on explainer\" or a \"trainer page\". Input – a question or a ready-made instruction. Output – one html file that opens itself in the browser and one clickable link to it; with the --publish flag – a link to a claude.ai artifact."
 argument-hint: "<how to … | text of a ready-made instruction> [--publish]"
-version: 1.7
+version: 1.8
 user-invocable: true
 ---
 
@@ -79,8 +79,8 @@ The page is built only by the `build_page.py` script that sits next to this file
 
 1. Read only the sample in `template.html` – the lines between the `CONTENT` and `ENGINE` comments (about 71–180). That is what the blocks look like. There is no need to read the engine below: its features are described in the `CONTENT` and `SCENE` sections of this file.
 2. Write the blocks of the topic into a separate file `<topic>.js`: `const model`, `const CONTENT`, `function SCENE(k)` – in the same form as the sample. No `<script>`, no renderer, camera, lights or grid of your own: the engine provides them. If something is missing, write your own in `SCENE` with Three.js (`k.THREE`, `b.add(obj)`). Put the blocks file where the page goes, outside any repository.
-3. Build: `python -I -X utf8 "<skill folder>/build_page.py" <topic>.js how-to-buy-bitcoin.html`. Name the page after the topic. A bare name puts the page into `~/how-to` or the folder from `HOW_TO_DIR`; a full path puts it where the user works. The script does not write inside a git repository. It prints the path and a `file:///` link.
-4. The script refused (a block is missing, a syntax error, a path inside a repository) – fix the blocks file or the path and build again.
+3. Build: `python -I -X utf8 "<skill folder>/build_page.py" <topic>.js how-to-buy-bitcoin.html`. Name the page after the topic. A bare name puts the page into `~/how-to` or the folder from `HOW_TO_DIR`; a full path puts it where the user works. The script does not write inside a git repository. Before writing, the script makes a trial run: it executes the scene, walks through every step, clicks every part and releases every handle. An error such as "lid is not defined" (a part created without `const lid =`) stops the build. It prints the path and a `file:///` link.
+4. The script refused (a block is missing, a syntax error, an error in the trial run, a path inside a repository) – fix the blocks file or the path and build again. Never hand over a page the script did not build.
 
 There is one `model(v)` function per page: both the placement of objects and the labels call it. That way the numbers never drift from the picture.
 
