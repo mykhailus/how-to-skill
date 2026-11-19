@@ -2,7 +2,7 @@
 name: how-to
 description: "An instruction you can touch: for any \"how do I do X\" question, builds a single page – the order of steps on the left, a transparent ink drawing on the right that the reader works with their hands (drag, click, click fast). Steps tick themselves off as the reader performs them, and a \"done\" card appears at the end. Draws its own objects for every topic. Use when asked for an \"interactive instruction\", a \"how-to\", \"how to do X so I can play with it\", a \"hands-on explainer\" or a \"trainer page\". Input – a question or a ready-made instruction. Output – one html file that opens itself in the browser and one clickable link to it; with the --publish flag – a link to a claude.ai artifact."
 argument-hint: "<how to … | text of a ready-made instruction> [--publish]"
-version: 1.8
+version: 1.9
 user-invocable: true
 ---
 
@@ -91,7 +91,7 @@ First open the finished file yourself in the user's regular browser – with one
 - macOS: `open "/path/how-to-buy-bitcoin.html"`
 - Linux: `xdg-open "/path/how-to-buy-bitcoin.html"`
 
-A built-in app browser shows local files without scripts and the page stays blank there; that is why the system browser is used.
+A built-in app browser shows local files without scripts: instead of the instruction it shows a hint to open the file in a regular browser. That is why the system browser opens the page.
 
 Then the answer to the user – one clickable link to the file and nothing else:
 

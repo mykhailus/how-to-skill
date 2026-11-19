@@ -58,6 +58,7 @@ h1{font:700 clamp(38px,6.4vw,88px)/.95 var(--disp);letter-spacing:-.03em;margin:
 </script>
 </head>
 <body>
+<p class="nojs" style="max-width:560px;margin:15vh auto;padding:0 24px;font:15px/1.6 system-ui,sans-serif;color:#111">this page works in a regular browser: Chrome, Edge, Safari or Firefox. The built-in browser of an app shows a local file without scripts. Open this file in your browser.</p>
 <main id="app"></main>
 
 <script type="module">
@@ -199,12 +200,13 @@ canvas.tabIndex = 0; canvas.setAttribute('aria-label', C.title);
 stage.append(canvas, labels, hint, resetBtn, errBox); fig.append(stage, finBox);
 const fail = (where, e) => { if (!errBox.textContent) errBox.textContent = `error in ${where}: ${e?.message || e}`; console.error(e); };
 
+document.querySelector('.nojs')?.remove();
 const raw = {}, v = {}, ctl = {};
 (C.controls || []).forEach(c => { ctl[c.id] = c; raw[c.id] = v[c.id] = c.value ?? c.min ?? 0; });
-function setVal(id, x, snap) { const c = ctl[id]; if (!c) return; if (c.type === 'range') { x = Math.min(c.max, Math.max(c.min, x)); if (c.step) x = +(Math.round(x / c.step) * c.step).toFixed(6); } raw[id] = x; if (snap || c.type !== 'range') v[id] = x; }
+function setVal(id, x, snap, free) { const c = ctl[id]; if (!c) return; if (c.type === 'range') { x = Math.min(c.max, Math.max(c.min, x)); if (c.step && !free) x = +(Math.round(x / c.step) * c.step).toFixed(6); } raw[id] = x; if (snap || c.type !== 'range') v[id] = x; }
 
 let stepI = 0, userAz = 0, userEl = 0, scrollLock = 0, hooks = {}, armed = false, doneHold = 0; const stepEls = [];
-const S = { raw, v, t: 0, dt: 0, step: 0, mem: {}, dragging: null, part: id => parts.get(id), set: (id, x) => setVal(id, x, true) };
+const S = { raw, v, t: 0, dt: 0, step: 0, mem: {}, dragging: null, part: id => parts.get(id), set: (id, x) => setVal(id, x, true, true) };
 (C.steps || []).forEach((st, i) => {
   const a = $('article', 'step', `<div class="n">${String(i + 1).padStart(2, '0')}</div><div><h3>${esc(st.title)}</h3><p>${esc(st.text)}</p></div>`);
   a.onclick = () => { scrollLock = performance.now() + 700; setStep(i); }; stepEls.push(a); text.append(a);
